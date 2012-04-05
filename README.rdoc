@@ -1,3 +1,15 @@
 == Welcome to torquetest
 
 This project will explore the use of torquebox.
+
+Initial stories to be implemented:
+1.  User should be able to log in.
+2.  A user or admin that is not logged in should not see anything.
+3.  Admin should be able to log in
+4.  Admin should be able to create an Auction
+5.  Admin should be able to specify name, descrption, ending time of the auction
+6.  User should be able to see list of active auctions
+7.  User should be able to place a bid on an auction
+8.  User should be able to specify an amount in the bid.
+9.  System should tell user if a bid has been accepted or not.
+10.  System should tell user if the auction was won.
