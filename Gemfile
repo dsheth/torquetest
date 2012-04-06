@@ -38,3 +38,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug'
+
+
+gem 'torquebox'
+gem 'bcrypt-ruby'
