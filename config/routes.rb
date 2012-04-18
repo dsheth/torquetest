@@ -1,4 +1,6 @@
 Torquetest::Application.routes.draw do
+  resources :auctions
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
