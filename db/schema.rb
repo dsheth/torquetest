@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420195254) do
+ActiveRecord::Schema.define(:version => 20120420202506) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(:version => 20120420195254) do
     t.string   "status"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.integer  "user_id"
+    t.integer  "auction_id"
   end
 
   create_table "users", :force => true do |t|
