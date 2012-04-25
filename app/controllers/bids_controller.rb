@@ -25,6 +25,7 @@ class BidsController < ApplicationController
   # GET /bids/new.json
   def new
     @bid = Bid.new
+    @auction = Auction.find(params[:auction])
 
     respond_to do |format|
       format.html # new.html.erb

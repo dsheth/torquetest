@@ -10,6 +10,6 @@
   <%= @auction.expiration %>
 </p>
 
-
+<%= link_to 'Make a new bid', new_bid_path(:auction => @auction.id) %>
 <%= link_to 'Edit', edit_auction_path(@auction) %> |
 <%= link_to 'Back', auctions_path %>
