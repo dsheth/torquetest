@@ -42,7 +42,11 @@ class BidsController < ApplicationController
   # POST /bids.json
   def create
     @bid = Bid.new(params[:bid])
-
+    
+    @bid.auction_id = (params[:auction])
+    @bid.user = current_user;
+    
+    
     respond_to do |format|
       if @bid.save
         format.html { redirect_to @bid, :notice => 'Bid was successfully created.' }
