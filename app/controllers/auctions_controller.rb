@@ -25,7 +25,7 @@ class AuctionsController < ApplicationController
   # GET /auctions/new.json
   def new
     @auction = Auction.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @auction }

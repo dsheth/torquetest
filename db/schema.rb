@@ -10,22 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420202506) do
+ActiveRecord::Schema.define(:version => 20120501224257) do
 
   create_table "auctions", :force => true do |t|
     t.string   "name"
     t.datetime "expiration"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "highest_bid_id"
   end
 
   create_table "bids", :force => true do |t|
-    t.decimal  "amount",     :precision => 15, :scale => 2
+    t.decimal  "amount",      :precision => 15, :scale => 2
     t.string   "status"
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.integer  "user_id"
     t.integer  "auction_id"
+    t.datetime "placed_time"
   end
 
   create_table "users", :force => true do |t|

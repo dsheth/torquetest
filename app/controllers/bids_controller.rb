@@ -42,19 +42,46 @@ class BidsController < ApplicationController
   # POST /bids.json
   def create
     @bid = Bid.new(params[:bid])
-    
-    @bid.auction_id = (params[:auction])
+    @bid.placed_time = Time.zone.now #potential problem here because we are using the datetime of the server.  If using multiple servers, will need to use a different strategy.
+    @auction = Auction.find(params[:auction][:id])
+    @bid.auction = @auction;
     @bid.user = current_user;
-    
-    
-    respond_to do |format|
-      if @bid.save
-        format.html { redirect_to @bid, :notice => 'Bid was successfully created.' }
-        format.json { render :json => @bid, :status => :created, :location => @bid }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @bid.errors, :status => :unprocessable_entity }
+    if @bid.invalid?
+       format.html { render :action => "new" }
+       format.json { render :json => @bid.errors, :status => :unprocessable_entity }
+       return
+    end
+    message = ''
+  
+    if @auction.expiration < @bid.placed_time 
+      message = 'Auction already expired'
+      @bid.status = 'auction_expired'
+      @bid.save
+    elsif @auction.highest_bid.nil?
+      message = 'Successful bid placed'
+      @bid.status = 'current_highest_bid'
+      @auction.highest_bid = @bid
+      @auction.transaction do
+        @bid.save
+        @auction.save
       end
+    elsif  @auction.highest_bid.amount < @bid.amount
+      message = 'Successful bid placed'
+      @bid.status = 'current_highest_bid'
+      @old_bid = @auction.highest_bid
+      @old_bid.status = 'former_highest_bid'
+      @auction.highest_bid = @bid
+      @auction.transaction do
+        @bid.save
+        @auction.save
+        @old_bid.save
+      end
+      
+      
+    end
+    respond_to do |format|
+      format.html { redirect_to @bid, :notice => message }
+      format.json { render :json => @bid, :status => :created, :location => @bid }
     end
   end
 
