@@ -40,6 +40,6 @@ gem 'jquery-rails'
 # gem 'ruby-debug'
 
 
-gem 'torquebox'
+gem 'torquebox', '~> 2.0.3'
 gem 'bcrypt-ruby'
 gem 'activerecord-jdbcpostgresql-adapter'
