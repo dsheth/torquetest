@@ -13,6 +13,7 @@
   <tr>
     <td><%= auction.name %></td>
     <td><%= auction.expiration %></td>
+    <td><%= auction.highest_bid.nil?  ?  '' :  auction.highest_bid.amount %> </td>
     <td><%= link_to 'Show', auction %></td>
     <td><%= link_to 'Edit', edit_auction_path(auction) %></td>
     <td><%= link_to 'Destroy', auction, :confirm => 'Are you sure?', :method => :delete %></td>

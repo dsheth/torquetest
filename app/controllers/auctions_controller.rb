@@ -2,7 +2,7 @@ class AuctionsController < ApplicationController
   # GET /auctions
   # GET /auctions.json
   def index
-    @auctions = Auction.all
+    @auctions = Auction.includes(:highest_bid).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class AuctionsController < ApplicationController
   # GET /auctions/1
   # GET /auctions/1.json
   def show
-    @auction = Auction.find(params[:id])
+    @auction = Auction.includes(:highest_bid).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

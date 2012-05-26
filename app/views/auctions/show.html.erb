@@ -10,6 +10,11 @@
   <%= @auction.expiration %>
 </p>
 
+<p>
+  <b>Current highest bid:</b>
+  <%= @auction.highest_bid.nil? ? 'No bids' : @auction.highest_bid.amount %>
+</p>
+
 <%= link_to 'Make a new bid', new_bid_path(:auction => @auction.id) %>
 <%= link_to 'Edit', edit_auction_path(@auction) %> |
 <%= link_to 'Back', auctions_path %>
