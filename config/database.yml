@@ -27,3 +27,4 @@ production:
   hostname: localhost
   password: password
   database: torquetest_production
+  pool:  20
