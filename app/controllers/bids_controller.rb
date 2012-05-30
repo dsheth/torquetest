@@ -76,8 +76,11 @@ class BidsController < ApplicationController
         @auction.save
         @old_bid.save
       end
-      
-      
+    else # bid too low
+	  message = 'Bid amount too low'
+	  @bid.status = 'bid_too_low'
+	  @bid.save
+	  
     end
     respond_to do |format|
       format.html { redirect_to @bid, :notice => message }
