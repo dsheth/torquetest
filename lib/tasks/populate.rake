@@ -1,6 +1,9 @@
 namespace :db do 
 	desc "deletes and populates users and auctions"
 	task :populate => :environment do
+        require 'Bid'
+        require 'Auction'
+        require 'User'
 		puts "deleting and populating"
 		[Bid, Auction, User].each(&:delete_all)
 		ActiveRecord::Base.connection.reset_pk_sequence!('auctions')
