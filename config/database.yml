@@ -7,7 +7,7 @@
 development:
   adapter: jdbcpostgresql
   username: torquetest
-  hostname: localhost
+  host: localhost
   password: password
   database: torquetest_development
 
@@ -17,14 +17,15 @@ development:
 test:
   adapter: jdbcpostgresql
   username: torquetest
-  hostname: localhost
+  host: localhost
   password: password
   database: torquetest_test
 
 production:
   adapter: jdbcpostgresql
   username: torquetest
-  hostname: localhost
+  host:  192.168.10.17
+  port: 5432
   password: password
   database: torquetest_production
   pool:  40
