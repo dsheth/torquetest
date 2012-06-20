@@ -1,8 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate
+  after_filter :put_in_pool
   
   private
+  
+  
+  def put_in_pool
+    ActiveRecord::Base.clear_active_connections!
+  end
   
   def authenticate
     if current_user.nil?
